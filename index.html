@@ -5,6 +5,8 @@
   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
   <script src="./assets/lib/jquery-1.8.2.min.js"></script>
   <script src="./assets/lib/doT.min.js"></script>
+
+  <!-- <link type="text/css" rel="stylesheet" href="./assets/theme/simple.css"> -->
 </HEAD>
 <script>
   var config = "./assets/config.json";
@@ -31,78 +33,29 @@
     });
   });
 </script>
-<style>
-  * {
-    font-family: '微软雅黑'
-  }
-
-  .defaultBorder {
-    border: tan 1px solid;
-    padding: 5px;
-    margin: 5px;
-    background-color: #F8F8F8;
-    border-radius: 5px;
-  }
-
-  .storeHead {
-    font-size: 20px;
-  }
-
-  .appbox {
-    width: 300px;
-    display: inline-block;
-  }
-
-  .appbox:hover {
-    -moz-box-shadow: 2px 2px 5px #b1b1b1;
-    -webkit-box-shadow: 2px 2px 5px #b1b1b1;
-    box-shadow: 2px 2px 5px #b1b1b1;
-  }
-
-  .appIcon {
-    width: 128px;
-    height: 128px;
-    margin: auto;
-  }
-
-  .appBtn {
-    background-color: rgb(230, 230, 243);
-    text-decoration: none;
-    margin: 2px;
-    padding: 3px;
-    color: rgb(94, 94, 155);
-    font-size: 12px;
-  }
-
-  .appDesc {
-    font-size: 12px;
-    color: rgb(168, 168, 168);
-    margin: 5px;
-    margin-top: 15px;
-  }
-
-  .extDesc {
-    font-size: 12px;
-  }
-</style>
 
 <BODY>
   <script id="headtpl" type="text/template">
     <h3 class="storeHead defaultBorder">{{=it.title}}</h3>
   </script>
   <script id="appTpl" type="text/template">
-    <div>
+    <div class="appboxWarp">
       {{~it.apps :app:index}}
       <div class="appbox defaultBorder">
         <div class="appIcon">
           <a href="{{=app.runUrl}}">
-            <img src="{{=app.iconUrl}}">
+            {{? app.iconUrl}}
+            <img src="{{=app.iconUrl}}" onerror="this.onerror='';src='./assets/icons/default.png'">
+            {{?}}
+            {{? !app.iconUrl}}
+            <img src="./assets/icons/default.png">
+            {{?}}
           </a>
         </div>
-        <div style="text-align:center;">
+        <div class="appname">
           {{=app.name}}
         </div>
-        <div style="text-align: center;margin:3px;">
+        <div class="apptoolbar">
           <a class="appBtn" href="{{=app.runUrl}}">直接启动</a>
           <a class="appBtn" href="{{=app.stepUrl}}">首次安装</a>
         </div>
@@ -134,5 +87,7 @@
     </ul>
   </div>
 </BODY>
+<!--用于切换流量演示，可去掉-->
+<script src="./assets/lib/tool.js"></script>
 
 </HTML>

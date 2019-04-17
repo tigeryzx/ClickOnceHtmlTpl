@@ -2,7 +2,7 @@
     "title": "xx 公司应用中心",
     "apps": [{
         "name": "工场管理",
-        "description": "用于管理所有工场",
+        "description": "这是一行很长的描述这是一行很长的描述这是一行很长的描述",
         "version": "1.0.0.0",
         "runUrl": "GridTest/GridTest.application",
         "stepUrl": "GridTest/setup.exe",
@@ -16,6 +16,14 @@
         "runUrl": "http://",
         "stepUrl": "http://",
         "iconUrl": "assets/icons/app2.png",
+        "remark": "this is remark info",
+        "publishDate": "2017-01-02"
+    }, {
+        "name": "微型数据库",
+        "description": "some description",
+        "version": "1.0.0.0",
+        "runUrl": "http://",
+        "stepUrl": "http://",
         "remark": "this is remark info",
         "publishDate": "2017-01-02"
     }]

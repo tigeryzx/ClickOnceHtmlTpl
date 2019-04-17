@@ -29,4 +29,8 @@
 - [ ] 实现自动生成config.json中的信息
 
 ## default template (默认模板)
-![默认模板](demo.png)
+
+![simple.css](./screenshot/simple.png)
+
+![default.css](./screenshot/default.png)
+

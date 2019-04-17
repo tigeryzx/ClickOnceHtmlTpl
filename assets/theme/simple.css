@@ -1,0 +1,81 @@
+* {
+    font-family: '微软雅黑'
+}
+
+body,
+html {
+    background-color: #F2F2F2;
+    color: #5C5C5C;
+}
+
+.defaultBorder {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.storeHead {
+    font-size: 20px;
+    border-bottom: #fff 2px solid;
+}
+
+.appboxWarp {
+    display: flex;
+}
+
+.appbox {
+    width: 300px;
+    display: inline-block;
+    background-color: #fff;
+    align-items: stretch;
+}
+
+.appname {
+    text-align: left;
+    margin-left: 70px;
+}
+
+.apptoolbar {
+    margin: 10px;
+    text-align: left;
+    margin-left: 70px;
+}
+
+.appbox:hover {
+    -moz-box-shadow: 2px 2px 5px #b1b1b1;
+    -webkit-box-shadow: 2px 2px 5px #b1b1b1;
+    box-shadow: 2px 2px 5px #b1b1b1;
+}
+
+.appIcon {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    float: left;
+}
+
+.appIcon img {
+    width: 100%;
+    height: 100%
+}
+
+.appBtn {
+    background-color: rgb(230, 230, 243);
+    text-decoration: none;
+    margin: 2px;
+    padding: 3px;
+    color: rgb(94, 94, 155);
+    font-size: 12px;
+}
+
+.appDesc {
+    font-size: 12px;
+    color: rgb(168, 168, 168);
+    margin: 5px;
+    margin-top: 15px;
+}
+
+.extDesc {
+    font-size: 12px;
+    background-color: #fff;
+}
