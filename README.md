@@ -1,5 +1,6 @@
 ## ClickOnce Html Template（ClickOnce 发布页面 HTML 模板）
 * 用途：定制 VisualStuido 自动生成ClickOnce的HTML模板页
+* 查看 [Demo](https://tigeryzx.github.io/ClickOnceHtmlTpl/index.html)
 
 ## 使用
 1. 配置config.json中相应的信息
