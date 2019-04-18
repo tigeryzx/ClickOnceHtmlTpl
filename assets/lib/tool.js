@@ -8,7 +8,7 @@ function dynamicLoadCss(url) {
 }
 
 (function () {
-    var styles = ['default.css', 'simple.css'];
+    var styles = ['simple.css', 'default.css'];
     var currentStyle = window.localStorage.getItem('currentStyle') || styles[0];
     var cssSelect = $('<select style="position:absolute;bottom:5px;right:5px;"></select>');
     var styleurl = './assets/theme/' + currentStyle;
