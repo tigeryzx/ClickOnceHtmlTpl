@@ -3,36 +3,12 @@
 <HEAD>
   <title></title>
   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
-  <script src="./assets/lib/jquery-1.8.2.min.js"></script>
+  <script src="./assets/lib/ajax.js"></script>
   <script src="./assets/lib/doT.min.js"></script>
 
   <!-- <link type="text/css" rel="stylesheet" href="./assets/theme/simple.css"> -->
 </HEAD>
-<script>
-  var config = "./assets/config.json";
 
-  function initApp(config) {
-    $('title').text(config.title);
-
-    $('#content').append(getTemplate('#headtpl', config));
-    $('#content').append(getTemplate('#appTpl', config));
-  }
-
-  function getTemplate(selector, data) {
-    var tpl = doT.template($(selector).html());
-    return tpl(data);
-  }
-
-  $(function () {
-    $.ajax({
-      url: config,
-      success: function (config) {
-        initApp(config);
-      },
-      dataType: 'json'
-    });
-  });
-</script>
 
 <BODY>
   <script id="headtpl" type="text/template">
@@ -66,8 +42,7 @@
           {{? app.remark}}
           <div>{{=app.remark}}</div>
           {{?}}
-          <div>最新版本：{{=app.version}}</div>
-          <div>发布日期：{{=app.publishDate}}</div>
+          <div>最新版本：{{=app.version}} 发布日期：{{=app.publishDate}}</div>
         </div>
       </div>
       {{~}}
@@ -90,5 +65,29 @@
 </BODY>
 <!--用于切换流量演示，可去掉-->
 <script src="./assets/lib/tool.js"></script>
+<script>
+  var config = "./assets/config.json";
 
+  function initApp(config) {
+    window.document.title = config.title;
+   
+    var chtml = getTemplate('headtpl', config);
+    chtml = chtml + getTemplate('appTpl', config);
+    window.document.getElementById('content').innerHTML = chtml;
+  }
+
+  function getTemplate(selector, data) {
+    var tpl = doT.template(window.document.getElementById(selector).innerHTML);
+    return tpl(data);
+  }
+
+  function load(){
+    window.get(config,null,function(data){
+      initApp(JSON.parse(data));
+    });
+  }
+
+  load();
+
+</script>
 </HTML>

@@ -8,27 +8,28 @@ function dynamicLoadCss(url) {
 }
 
 (function () {
-    var styles = ['simple.css', 'default.css'];
+    var styles = ['default.css', 'simple.css'];
     var currentStyle = window.localStorage.getItem('currentStyle') || styles[0];
-    var cssSelect = $('<select style="position:absolute;bottom:5px;right:5px;"></select>');
+    var cssSelect = window.document.createElement('select');
+    cssSelect.setAttribute('style','position:absolute;bottom:5px;right:5px;')
     var styleurl = './assets/theme/' + currentStyle;
     dynamicLoadCss(styleurl);
-
-    $(cssSelect).val(currentStyle);
+    cssSelect.value = currentStyle;
     for (var i = 0; i < styles.length; i++) {
-        var el = $('<option></option>');
+        var el = window.document.createElement('option');
         var val = styles[i];
-        $(el).val(val);
-        $(el).text(val);
+        el.setAttribute('value',val);
+        el.innerText = val;
         if (val == currentStyle)
-            $(el).attr('selected', true);
-        $(cssSelect).append(el);
+            el.setAttribute('selected', true);
+        cssSelect.appendChild(el);
     }
 
-    $(cssSelect).change(function (selStyle) {
-        window.localStorage.setItem('currentStyle', $(cssSelect).val());
+    cssSelect.onchange = function(){
+        var selStyle = cssSelect.value;
+        window.localStorage.setItem('currentStyle', selStyle);
         window.location.reload();
-    });
+    }
 
-    $(window.document.body).append(cssSelect);
+    window.document.body.appendChild(cssSelect);
 })();
