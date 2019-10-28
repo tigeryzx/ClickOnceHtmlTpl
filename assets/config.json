@@ -1,6 +1,7 @@
 {
     "title": "xx 公司应用中心",
     "apps": [{
+        "deployassemblyId": "GridTest.application",
         "name": "工场管理",
         "description": "这是一行很长的描述这是一行很长的",
         "version": "1.0.0.0",
@@ -10,6 +11,7 @@
         "remark": "this is remark info",
         "publishDate": "2017-01-02"
     }, {
+        "deployassemblyId": "x.application",
         "name": "财务会计",
         "description": "xx 公司财务管理软件",
         "version": "1.0.0.0",
@@ -19,6 +21,7 @@
         "remark": "this is remark info",
         "publishDate": "2017-01-02"
     }, {
+        "deployassemblyId": "y.application",
         "name": "微型数据库",
         "description": "some description",
         "version": "1.0.0.0",
