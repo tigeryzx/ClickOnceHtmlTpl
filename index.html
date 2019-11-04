@@ -1,15 +1,14 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-"http://www.w3.org/TR/html4/loose.dtd">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <HEAD>
   <title></title>
   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
-  <meta http-equiv="X-UA-Compatible"content="IE=9; IE=8; IE=EDGE">
-  <meta name="renderer"  content="ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE">
+  <meta name="renderer" content="ie-stand">
   <script src="./assets/lib/ajax.js"></script>
   <script src="./assets/lib/doT.min.js"></script>
 
-  <!-- <link type="text/css" rel="stylesheet" href="./assets/theme/simple.css"> -->
+  <link type="text/css" rel="stylesheet" href="./assets/theme/simple.css">
 </HEAD>
 
 
@@ -35,8 +34,7 @@
           {{=app.name}}
         </div>
         <div class="apptoolbar">
-          <a class="appBtn" href="{{=app.runUrl}}">直接启动</a>
-          <a class="appBtn" href="{{=app.stepUrl}}">首次安装</a>
+          <a class="appBtn" onclick="openLink(this)" app-href="{{=app.runUrl}}">直接启动</a>
         </div>
         <div class="appDesc">
           {{? app.description}}
@@ -66,14 +64,13 @@
     </ul>
   </div>
 </BODY>
-<!--用于切换样式，可去掉-->
-<script src="./assets/lib/tool.js"></script>
+
 <script>
   var config = "./assets/config.json";
 
   function initApp(config) {
     window.document.title = config.title;
-   
+
     var chtml = getTemplate('headtpl', config);
     chtml = chtml + getTemplate('appTpl', config);
     window.document.getElementById('content').innerHTML = chtml;
@@ -84,8 +81,36 @@
     return tpl(data);
   }
 
-  function load(){
-    window.get(config,null,function(data){
+  function openLink(tar) {
+    var runing = tar.getAttribute("runing");
+    if (runing == "true") {
+      return;
+    }
+
+    tar.className = "appBtn dis";
+    tar.setAttribute("runing", true);
+    tar.setAttribute("ls", 7);
+
+    var app_url = tar.getAttribute("app-href");
+    window.open(app_url);
+
+    var ltime = setInterval(function () {
+      var ls = tar.getAttribute("ls");
+      if (ls > 0) {
+        tar.innerText = "請稍候(" + ls + ")";
+        tar.setAttribute("ls", ls - 1);
+      }
+      else {
+        tar.className = "appBtn";
+        tar.innerText = "直接启动";
+        tar.setAttribute("runing", false);
+        clearInterval(ltime);
+      }
+    }, 1000);
+  }
+
+  function load() {
+    window.get(config, null, function (data) {
       initApp(JSON.parse(data));
     });
   }
@@ -93,4 +118,5 @@
   load();
 
 </script>
+
 </HTML>
