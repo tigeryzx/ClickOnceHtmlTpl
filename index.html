@@ -92,7 +92,8 @@
     tar.setAttribute("ls", 7);
 
     var app_url = tar.getAttribute("app-href");
-    window.open(app_url);
+    //window.open(app_url);
+    window.location.href = app_url;
 
     var ltime = setInterval(function () {
       var ls = tar.getAttribute("ls");
